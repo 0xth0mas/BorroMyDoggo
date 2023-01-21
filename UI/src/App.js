@@ -268,12 +268,13 @@ function App() {
   };
 
   const toggleDoggoId = (position)=> {
+    position = parseInt(position);
     const updateTokens = doggoIds.map((item, index) => index === position ? !item : item);
     if(!sellBoostMode) {
       let totalCostWEI = 0;
       for(let i = 0;i < doggo.availableDoggos.length;i++) {
         if(updateTokens[doggo.availableDoggos[i].doggoId]) {
-          totalCostWEI += doggo.availableDoggos[i].borroCost;
+          totalCostWEI += parseInt(doggo.availableDoggos[i].borroCost);
         }
       }
       setTotalCostToBorro(totalCostWEI);
@@ -282,11 +283,13 @@ function App() {
   };
 
   const toggleBaycId = (position)=> {
+    position = parseInt(position);
     const updateTokens = baycIds.map((item, index) => index === position ? !item : item);
     setBaycIds(updateTokens);
   };
 
   const toggleMaycId = (position)=> {
+    position = parseInt(position);
     const updateTokens = maycIds.map((item, index) => index === position ? !item : item);
     setMaycIds(updateTokens);
   };
@@ -303,7 +306,7 @@ function App() {
   const getCurrentCost = (doggoId) => {
     for(let i = 0;i < doggo.availableDoggos.length;i++) {
       if(doggo.availableDoggos[i].doggoId == doggoId) {
-        return doggo.availableDoggos[i].borroCost;
+        return parseInt(doggo.availableDoggos[i].borroCost);
       }
     }
     return 0;
